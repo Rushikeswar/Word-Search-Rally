@@ -1,0 +1,177 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    
+    /* background-color: ,; ,,,,*/
+    background-color:#e0f7fa;
+    user-select: none;
+}
+#notification{
+    font-size: 20px;
+    color: green;
+
+}
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 100px;
+    padding: 20px;
+    max-width: 100%;
+}
+
+#grid-container {
+    display: grid;
+    gap: 10px;
+    background-color: #fff;
+    padding: 10px;
+    border: 2px solid #05aff3;
+    box-shadow: 0 4px 8px rgba(1, 140, 238, 0.1);
+    width: max-content;
+    height: max-content;
+}
+
+.grid-cell {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #eee;
+    border: 1px solid #ddd;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    gap:10px;
+    user-select: none;
+}
+
+.left {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+    justify-content: center;
+    position: relative;
+}
+
+.right {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.middle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+
+
+.words-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.words-list {
+    background-color: #fff;
+    padding: 10px;
+    border: 1px solid #201d1d;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: max-content;
+}
+
+.words-list ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.words-list li {
+    padding: 5px 0;
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+}
+
+.game-options {
+    display: flex;
+    gap: 10px;
+}
+
+.game-options button {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.game-options button:hover {
+    background-color: #0056b3;
+}
+
+.game-options button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.wrong-selection {
+    color: rgb(220, 61, 61);
+}
+
+.wrong-direction {
+    background-color: red;
+}
+
+.highlight {
+    background-color: grey;
+}
+
+#instructions{
+   color:green;
+   list-style-type: decimal;
+   display:flex;
+   flex-direction: column;
+}
+#generate{
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #07e938;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+#generate :hover{
+    background-color: #0c7a2b;
+}
+
+#header{
+    top:50px;
+    filter: drop-shadow(0 0 1rem white);
+    left:25%;
+    right:25%;
+    font-size: 40px;
+    font-family: 'Times New Roman', Times, serif;
+}
+#findeme{
+    color:green;
+    font-size: 20px;
+}
