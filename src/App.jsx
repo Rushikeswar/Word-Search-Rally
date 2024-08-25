@@ -7,26 +7,38 @@ import Endgame from './components/Endgame';
 import Grid from './components/Grid';
 import NextButton from './components/NextButton.jsx';
 import GenerateButton from './components/GenerateButton';
+import NewRallyButton from './components/NewRallyButton.jsx'
 import Instructions from './components/Instructions';
 import WordsList from './components/WordsList';
 import { generateGrid, getRandomWords, placeWordsInGrid, fillRandomLetters, clearGridHighlights, clearWordListHighlights } from './utils';
 import './styles.css'
 export default function App() {
-    
-    const [level, setLevel] = useState(Number(5));
     const [grid, setGrid] = useState([]);
     const [first,setfirst]=useState(true);
     const [words, setWords] = useState([]);
     const [method, setMethod] = useState(-1); //-1 -> generated, 0 -> solve, 1 -> play
     const [notification, setNotification] = useState("");
     const [next,setNext]=useState(false);
-    const [maxi,setmaxi]=useState(Number(5));
+    const [level, setLevel] = useState(() => {
+        const storedLevel = localStorage.getItem('locallevel');
+        return storedLevel ? JSON.parse(storedLevel) : 5;
+    });
 
+    const [maxi, setmaxi] = useState(() => {
+        const storedMaxi = localStorage.getItem('localmaxi');
+        return storedMaxi ? JSON.parse(storedMaxi) : 5;
+    });
     const handleLevelChange = useCallback((newLevel) => {
         setLevel(newLevel);
     }, []);
 
+    useEffect(() => {
+        localStorage.setItem('locallevel', JSON.stringify(level));
+    }, [level]);
 
+    useEffect(() => {
+        localStorage.setItem('localmaxi', JSON.stringify(maxi));
+    }, [maxi,level]);
 
     const handlenextbutton = useCallback(() => {
         if (level <= 15) {
@@ -53,6 +65,31 @@ export default function App() {
     }, [wordsfromdatabase]);
     
 
+    const handlenewrally =useCallback(()=>{
+        setLevel(5)
+        setmaxi(5)
+        setfirst(false);
+        localStorage.setItem('localmaxi', JSON.stringify(Number(5)));
+        localStorage.setItem('locallevel',JSON.stringify(Number(5)));
+        if (level <= 15) {
+            setLevel((prevLevel) => {
+                clearWordListHighlights();
+                clearGridHighlights();
+                const newLevel=5;
+                const newGrid = generateGrid(newLevel);
+                const newWords = getRandomWords(newLevel, wordsfromdatabase);
+                const x = placeWordsInGrid(newGrid, newWords);
+                const newGrid3 = fillRandomLetters(x.grid);
+                setGrid(newGrid3);
+                setWords(x.placedWords);
+                setNotification("New Rally Started!!");
+                setMethod(-1);
+                setNext(false);
+    
+                return newLevel;  // Return the new level to update state
+            });
+        }
+    })
 
 
     const handleGeneratePuzzle = useCallback(() => {
@@ -72,6 +109,9 @@ export default function App() {
         }
 
     }, [first,level,wordsfromdatabase]);
+
+
+
 
     const gridMemoized = useMemo(() => <Grid grid={grid} level={level} />, [grid]);
     const wordsListMemoized = useMemo(() => <WordsList words={words} />, [words]);
@@ -93,7 +133,7 @@ export default function App() {
         clearGridHighlights={clearGridHighlights}/>)
     ), [method]);
 
-
+    const check=localStorage.getItem('locallevel')>5||localStorage.getItem('localmaxi')>5
     
     return (
         <>
@@ -112,6 +152,7 @@ export default function App() {
                 {(next&&level<15)&& <NextButton onnextlevel={handlenextbutton}/>}
                 </div>)}
                 <div><p id='notification'>{notification}</p></div>
+                {(!first||check)&&<NewRallyButton handlenewrally={handlenewrally} method={method} setNotification={setNotification}/>}
             </div>
         </div>
 

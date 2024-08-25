@@ -6,8 +6,6 @@ export function getRandomWords(size,words) {
     console.log(words)
     let selectedWords =new Set();
     let availableWords = { ...words };
-
-
     availableWords = Object.keys(availableWords).reduce((acc, key) => {
         acc[key] = [...availableWords[key]];
         return acc;
@@ -123,8 +121,6 @@ export function highlightWordinlist(word, color) {
         setTimeout(() => {
             wordElement.style.transform = 'scale(1)';
         }, 300);
-    } else {
-        console.warn(`Word '${word}' not found in the list.`);
     }
 }
 
@@ -158,7 +154,5 @@ export function clearWordHighlight(word) {
 
         wordElement.style.transition = '';
         wordElement.style.transform = '';
-    } else {
-        console.warn(`Word '${word}' not found in the list.`);
-    }
+    } 
 }

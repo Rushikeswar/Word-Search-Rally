@@ -148,7 +148,7 @@ body {
    display:flex;
    flex-direction: column;
 }
-#generate{
+#generate,#newrally{
     padding: 10px 20px;
     font-size: 16px;
     font-weight: bold;
@@ -162,6 +162,23 @@ body {
 #generate :hover{
     background-color: #0c7a2b;
 }
+
+#newrally{
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: rgb(255, 74, 74);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#newrally :hover{
+    background-color: red;
+}
+
 
 #header{
     top:50px;
